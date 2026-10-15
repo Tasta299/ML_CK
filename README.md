@@ -1,8 +1,5 @@
-- File sku_data.xlsx : file dữ liệu thô
-- file sku_data_preprocessed.xlsx : file dữ liệu đã xử lý
-- file Tien_xu_ly.ipynb : file code tiền xử lý
-  ## Bước 10: Tạo Các Bản Dữ Liệu Bổ Sung Phục Vụ Nghiên Cứu & Đối Soát
-Để đáp ứng trọn vẹn yêu cầu kiểm chứng thực nghiệm, chúng ta xuất ra các phiên bản dữ liệu sau:
+
+  ## HƯỚNG DẪN SỬ DỤNG FILE
 1. **Bản 1: `sku_data_preprocessed.xlsx` (Bản đầy đủ chuẩn hóa)**:
    - Các biến liên tục được RobustScaler, `Expire_category` giữ nguyên (0–3), kèm cờ `Is_ghost_sku` và `Is_operational_outlier`.
 2. **Bản 2: `sku_data_unscaled_clean.xlsx` (Bản chưa scale)**:
@@ -13,5 +10,9 @@
    - Lược bỏ biến trùng lặp `Total outbound_scaled` (giữ lại `Outbound number_scaled` và `Avg_units_per_order_scaled`).
 5. **Bản 5: `sku_data_pca_reduced.xlsx` (Bản giảm chiều PCA 90%–95% phương sai)**:
    - Không gian đặc trưng nén giữ lại trên 90%–95% phương sai gốc.
+6. **Tien_xu_ly.ipynb** : file code tiền xử lý
+7. **test.ipynb** : file code chạy thử
+
+   
 
 
