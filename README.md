@@ -13,6 +13,8 @@
 6. **Tien_xu_ly.ipynb** : file code tiền xử lý
 7. **test.ipynb** : file code chạy thử
 
+# 2 file mới nhất ( xlsx + ipynb ) là demo
+
    
 
 
