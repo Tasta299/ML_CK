@@ -6,7 +6,6 @@ import numpy as np
 
 
 def pairwise_distances(a: np.ndarray, b: np.ndarray | None = None) -> np.ndarray:
-    """Euclidean distances calculated with NumPy matrix arithmetic."""
     a = np.asarray(a, dtype=float)
     b = a if b is None else np.asarray(b, dtype=float)
     squared = np.sum(a * a, axis=1)[:, None] + np.sum(b * b, axis=1)[None, :] - 2 * a @ b.T
@@ -164,7 +163,6 @@ class IncrementalDBSCAN:
 def evaluate_clustering(
     X: np.ndarray, labels: np.ndarray, *, silhouette_sample: int | None = 800, seed: int = 42
 ) -> dict:
-    """Manual internal DBSCAN diagnostics; noise is excluded from geometry metrics."""
     X = np.asarray(X, dtype=float)
     labels = np.asarray(labels, dtype=int)
     if len(X) != len(labels):
@@ -236,7 +234,6 @@ def evaluate_clustering(
 
 
 def adjusted_rand_index(labels_a: np.ndarray, labels_b: np.ndarray) -> float:
-    """Partition agreement independent of numeric cluster IDs, implemented manually."""
     labels_a = np.asarray(labels_a)
     labels_b = np.asarray(labels_b)
     if len(labels_a) != len(labels_b):
