@@ -1,11 +1,3 @@
-"""Incremental DBSCAN implemented from neighborhood and core-point rules.
-
-NumPy performs array arithmetic; no clustering or metric library is used.
-Insertion updates neighborhoods and core status, then rebuilds connected
-components of core points. This handles cluster creation and merges exactly
-for a fixed eps/min_samples under insertion-only updates.
-"""
-
 from __future__ import annotations
 
 from collections import deque
@@ -22,11 +14,6 @@ def pairwise_distances(a: np.ndarray, b: np.ndarray | None = None) -> np.ndarray
 
 
 def prepare_features(frame, category_weight: float = 1.0) -> np.ndarray:
-    """Six scaled measurements plus one-hot shelf-life group.
-
-    Different groups have Euclidean distance ``category_weight`` from the
-    category encoding alone. Audit/stream columns are intentionally excluded.
-    """
     columns = [
         "Unitprice_scaled",
         "Outbound number_scaled",
@@ -47,13 +34,6 @@ def prepare_features(frame, category_weight: float = 1.0) -> np.ndarray:
 
 
 class IncrementalDBSCAN:
-    """Insertion-only DBSCAN with exact neighborhood updates.
-
-    ``min_samples`` includes the point itself. Cluster IDs are retained when
-    possible; when components merge, the smallest old ID survives. Border
-    points adjacent to several components receive the smallest component ID.
-    """
-
     def __init__(self, eps: float = 0.8, min_samples: int = 8):
         if not np.isfinite(eps) or eps <= 0:
             raise ValueError("eps must be positive and finite")
