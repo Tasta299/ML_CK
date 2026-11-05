@@ -19,12 +19,11 @@
 
 ## Incremental DBSCAN thủ công
 
-- Dữ liệu đầu vào: sheet `sku_tien_xu_ly` của `sku_tien_xu_ly_lan1.xlsx` (2.073 SKU).
+- Dữ liệu đầu vào: `sku_tien_xu_ly_lan1.xlsx` (2.073 SKU).
 - Thuật toán và các chỉ số đánh giá được cài đặt trong `incremental_dbscan.py`. 
-- Mở **`Incremental_DBSCAN.ipynb`** bằng Jupyter và chạy các ô từ trên xuống. Workbook không có cột thời gian hoặc `Stream_order`, nên notebook tạo thứ tự cập nhật giả lập bằng xáo trộn cố định `seed=42`. 70% đầu được dùng để chọn tham số bằng vòng lặp thủ công; 30% còn lại chia thành ba batch cập nhật.
-- Cần Python 3 cùng `numpy`, `pandas`, `openpyxl`, `matplotlib`, `jupyter` (hoặc môi trường Jupyter tương đương).
+- Mở **`Incremental_DBSCAN.ipynb`** bằng Jupyter và chạy các ô từ trên xuống. Dataset không có cột thời gian hoặc `Stream_order`, nên nhóm tạo thứ tự cập nhật giả lập bằng xáo trộn cố định `seed=42`. 70% đầu được dùng để chọn tham số bằng vòng lặp thủ công; 30% còn lại chia thành ba batch cập nhật.
 - Cấu hình chọn được: `eps=0.65`, `min_samples=12`. Sau ba batch: 16 cụm, 445 điểm nhiễu (21,47%), silhouette 0,3455, Davies–Bouldin 0,7300 và Calinski–Harabasz 408,1489. Ba chỉ số hình học loại trừ điểm nhiễu.
-- Kết quả xuất từ notebook: `sku_cluster_labels.csv` (nhãn theo ID), `update_results.csv` (chỉ số theo batch), `clusters_pca.png` và `update_summary.png` (biểu đồ). PCA chỉ để trực quan hóa; phân cụm vẫn chạy trên đủ 10 chiều đặc trưng.
-- `partial_fit` nhận dữ liệu **đã xử lý theo cùng quy trình** với workbook đầu vào. Chưa có tham số của bộ scaler gốc để biến đổi SKU mới từ dữ liệu thô; phần minh họa cập nhật dùng 30% dữ liệu giữ lại từ workbook. Thuật toán hỗ trợ thêm điểm, không hỗ trợ xóa điểm hoặc đổi tham số mà không fit lại.
+- Kết quả: `sku_cluster_labels.csv` (nhãn theo ID), `update_results.csv` (chỉ số theo batch), `clusters_pca.png` và `update_summary.png` (biểu đồ). PCA chỉ để trực quan hóa; phân cụm vẫn chạy trên đủ 10 chiều đặc trưng.
+- `partial_fit` nhận dữ liệu đã xử lý theo cùng quy trình đầu vào. Chưa có tham số của bộ scaler gốc để biến đổi SKU mới từ dữ liệu thô; phần minh họa cập nhật dùng 30% dữ liệu giữ lại. Thuật toán hỗ trợ thêm điểm, không hỗ trợ xóa điểm hoặc đổi tham số mà không fit lại.
 
 
